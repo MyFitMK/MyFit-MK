@@ -2680,9 +2680,18 @@ function initApp() {
 
         // Регистрирање на Service Worker
         function registerServiceWorker() {
+            if (window.location.protocol === 'file:') {
+      	       console.log('⚠️ Service Worker исклучен за локално тестирање (file://)');
+               return;
+            }
+    
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('⚠️ Service Worker исклучен за localhost');
+        return;
+            }
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker
-                    .register('/MyFit-MK/sw.js')
+                    .register('/sw.js')
                     .then((registration) => {
                         console.log('✅ Service Worker регистриран:', registration);
                     })
