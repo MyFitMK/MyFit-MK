@@ -3,12 +3,15 @@ const API_CACHE_NAME = 'myfit-mk-api-v1';
 
 // Ресурси за кеширање - офлајн функционалност
 const urlsToCache = [
-    './',
-    './index.html',
-    './manifest.json',
-    // CSS и JavaScript од CDN - ќе ги кешираме при прво вчитување
+    '/MyFit-MK/',
+    '/MyFit-MK/index.html',
+    '/MyFit-MK/manifest.json',
+    '/MyFit-MK/sw.js',
+    '/MyFit-MK/myfit-logo.jpg',
+    '/MyFit-MK/icons/icon-192x192.png',
+    '/MyFit-MK/icons/icon-512x512.png',
     'https://cdn.tailwindcss.com',
-    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap
 ];
 
 // Стратегии за кеширање
@@ -125,7 +128,7 @@ async function cacheFirstStrategy(request) {
         
         // Fallback за различни типови на ресурси
         if (request.destination === 'document') {
-            return caches.match('./index.html');
+            return caches.match('/MyFit-MK/index.html');
         }
         
         return new Response('Офлајн мод - ресурсот не е достапен', {
