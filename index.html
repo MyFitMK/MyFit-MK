@@ -2682,10 +2682,15 @@ function initApp() {
         function registerServiceWorker() {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker
-                    .register('/sw.js')
+                    .register('/MyFit-MK/sw.js')
                     .then((registration) => {
                         console.log('✅ Service Worker регистриран:', registration);
-                        
+                    })
+                    .catch((error) => {
+                        console.log('❌ Service Worker регистрација неуспешна:', error);
+                    });
+    }
+}
                         // Check for updates
                         registration.addEventListener('updatefound', () => {
                             const newWorker = registration.installing;
